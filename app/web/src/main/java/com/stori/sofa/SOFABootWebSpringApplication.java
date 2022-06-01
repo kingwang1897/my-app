@@ -1,17 +1,21 @@
 package com.stori.sofa;
 
+import com.alibaba.nacos.api.annotation.NacosProperties;
 import com.stori.sofa.endpoint.facade.SampleRestFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication(scanBasePackages = {"com.stori.sofa"})
-@ImportResource({"classpath*:META-INF/my-app/*.xml"})
+@ImportResource({"classpath:META-INF/my-app/*.xml"})
+@EnableDiscoveryClient
+//@NacosPropertySource(dataId = "processorId", autoRefreshed = true)
 public class SOFABootWebSpringApplication {
 
     private static final Logger logger = LoggerFactory.getLogger(SOFABootWebSpringApplication.class);
@@ -20,6 +24,7 @@ public class SOFABootWebSpringApplication {
 
         SpringApplication springApplication = new SpringApplication(SOFABootWebSpringApplication.class);
         ApplicationContext applicationContext = springApplication.run(args);
+
 
         if (logger.isInfoEnabled()){
             logger.info("application start");

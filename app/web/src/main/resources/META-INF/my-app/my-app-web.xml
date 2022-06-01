@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:sofa="http://schema.alipay.com/sofa/schema/slite"
-       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:sofa="http://sofastack.io/schema/sofaboot"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-            http://schema.alipay.com/sofa/schema/slite   http://schema.alipay.com/sofa/slite.xsd"
+            http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
        default-autowire="byName">
 
-
+    <!--    服务发布-->
+    <bean id="billInternalFacade" class="com.stori.sofa.BillInternalFacadeImpl"></bean>
+    <sofa:service interface="com.stori.sofa.BillInternalFacade" ref="billInternalFacade">
+        <sofa:binding.bolt/>
+    </sofa:service>
 </beans>
